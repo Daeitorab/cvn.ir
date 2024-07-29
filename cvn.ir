@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کمک معیشتی دولت</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+        h1 {
+            color: #dc3545;
+        }
+        input[type="text"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #20c997;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #17a2b8;
+        }
+        .status {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        ul {
+            text-align: left;
+            margin: 10px 0;
+        }
+        #result {
+            display: none;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="container" id="formContainer">
+        <h1>کمک معیشتی دولت</h1>
+        <input type="text" id="fullName" placeholder="نام و نام خانوادگی خود را وارد کنید" required>
+        <input type="tel" id="phoneNumber" placeholder="شماره تلفن" required>
+        <input type="text" id="nationalId" placeholder="کد ملی" required>
+        
+        <div class="radio-group">
+            <p>وضعیت تاهل:</p>
+            <label><input type="radio" name="marital_status" value="single"> مجرد</label>
+            <label><input type="radio" name="marital_status" value="married"> متاهل</label>
+        </div>
+        
+        <button onclick="showResult()">پیگیری</button>
+        <p class="error" id="errorMessage"></p>
+    </div>
+
+    <div class="container" id="result">
+        <h1>نتیجه استعلام</h1>
+        <div class="status">وضعیت: دریافت نشده</div>
+        <p>مبلغ کمک معیشتی شما: ۳۶۵۰۰۰ تومان</p>
+        <p>مراحل دریافت:</p>
+        <ul>
+            <li>نصب اپلیکیشن سامانه کمک معیشتی</li>
+            <li>ورود با شماره تلفن همراه</li>
+            <li>تکمیل فرم و دریافت</li>
+        </ul>
+        <p>برای نصب اپلیکیشن کمک معیشتی خود:</p>
+        <button>دانلود اپلیکیشن سامانه کمک معیشتی</button>
+    </div>
+
+    <script>
+        function showResult() {
+            const fullName = document.getElementById('fullName').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const nationalId = document.getElementById('nationalId').value;
+            const maritalStatus = document.querySelector('input[name="marital_status"]:checked');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Reset error message
+            errorMessage.textContent = '';
+
+            // Check if all fields are filled
+            if (!fullName || !phoneNumber || !nationalId || !maritalStatus) {
+                errorMessage.textContent = 'لطفاً تمام فیلدها را پر کنید.';
+                return;
+            }
+
+            // Hide form and show result
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
